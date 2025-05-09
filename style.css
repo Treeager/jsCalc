@@ -1,17 +1,114 @@
-button {
-    margin: 2px;
-}
+
 
 .calc-container {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-
+    display: flex;
+    align-items: center;    
+    margin-top: 20%;
+    
 }
 
-.number-display {
-    outline: 2px;
+.result-container {
+    outline: 2px solid lightgray;
+    border-radius: 2px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-top: 20%;
+    padding-right: 1%;
+
+}
+.result-container p{
+    font-size: 200%;
+}
+
+@media (min-width: 600px) {
+    .calc-container {
+        margin-top: 10%;
+        size: 120%;
+    }
+
+    .result-container {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding-top: 6%;
+        padding-right: 0.8%;
+    }
+
+    .result-container p {
+        font-size: 300%;
+    }
+}
+
+.numbers-grid {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 28% 28% 28% 16%;
+    width: 96.34%;
+    /* margin-left: -2%; */
+}
+
+
+div {
+    flex-basis: 100%;
+    height: 100px;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 600px) {
+    main {
+      flex-wrap: nowrap;
+    }
+
+    div {
+      flex-basis: 33%;
+    }
+  }
+
+.btn-darker-light {
+    background-color: #e8e9eb;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.dialog {
+    padding: 5px;
+    border-radius: 6px  ;
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    bottom: 25%;
+    left: 25%;
+    height: fit-content;
+    /* text-align: center; */
+    /* background: rgb(238, 233, 233); */
+    background: rgb(255, 248, 230);
+}
+@media only screen and (max-width: 600px) {
+    .overlay {
+        /* width: 100%; */
+    }
+    .dialog {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 97%;
+        margin: 5px;
+    }
+}
+.answers {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 50% 50%;
+    padding-left: 5px;
+    padding-right: 10px;
 }

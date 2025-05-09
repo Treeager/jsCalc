@@ -3,7 +3,7 @@ function changeResult(str) {
 }
 
 function addToResult(str) {
-    if (document.getElementById("result").innerHTML == "0") {
+    if (document.getElementById("result").innerHTML == "0" && str !== "/") {
         document.getElementById("result").innerHTML = "";
     }
     document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + str;
@@ -32,22 +32,30 @@ this.addEventListener(
             case ")": addToResult(')');break;
             case ".": addToResult('.');break;
             case "Enter": calculate();break;
+            case "a":
             case "c": changeResult(0);break;
             case "Backspace": backspace();break;
+            case "p": addToResult("3.14159");break;
+            case "^": addToResult("^");break;
         }
     }
 )
 
 function calculate(inp = document.getElementById("result").innerHTML) {
-    var calc = new MathCalc();
-    var expr = calc.parse(inp);
-    if (expr.error) {
-      alert("Some error:" + ' : ' + expr.error.text);
+    if (inp != "0/0") {
+        var calc = new MathCalc();
+        var expr = calc.parse(inp);
+        if (expr.error) {
+        alert("Some error:" + ' : ' + expr.error.text);
+        }
+        else {
+        var res = expr.eval();
+        changeResult(res);
+        }
+    } else {
+        document.getElementById("overlay").hidden = false
     }
-    else {
-      var res = expr.eval();
-      changeResult(res);
-    }
+
 }
 
 function backspace (inp = document.getElementById("result").innerHTML)  {
@@ -57,3 +65,4 @@ function backspace (inp = document.getElementById("result").innerHTML)  {
         changeResult(arr.join(''));
     } else { changeResult(0) }
 }
+

@@ -1,25 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="mathcalc.js"></script>
 </head>
 <body>
-    <div class="calc-container">
-        <div class="border">
-            <p id="result" style="text-align: end;">0</p>
+    <div class="overlay" id="overlay" hidden>
+        <div class="dialog">
+            <p>Ако избереш случайно отговора, какъв е шансът той да е правилен?</p>
+            <div class="answers">
+                <button class="btn btn-primary" onclick="won(false)">25%</button>
+                <button class="btn btn-primary" onclick="won(false)">0%</button>
+                <button class="btn btn-primary" onclick="won(false)">50%</button>
+                <button class="btn btn-primary" onclick="won(false)">25%</button>
+            </div>
         </div>
-        
-        <div id="buttonsContainer1" ></div>
-        <div id="buttonsContainer2" ></div>
-        <div id="buttonsContainer3" ></div>
-        
     </div>
-    <button type="button" class="btn btn-outline-secondary">Secondary</button>
-    <button onclick="changeResult()">Zdrasti</button>
+    <div class="overlay" id="congrats" hidden >
+        <div class="dialog">
+            <p>Правилен отговор!!!</p>
+            <p>Победи играта!!!</p>
+            <p>🎉Поздравления!🎉</p>
+        </div>
+    </div>
+    <div class="overlay" id="destruction" hidden >
+        <div class="dialog">
+            <p>Това не е решението</p>
+            <p>Самоунищожение след: <span style="color: red;" id="timer">5</span></p>
+        </div>
+    </div>
+
+    <div class="calc-container">
+        <div class="container">
+            <div class="result-container">
+                <p id="result">Ехооо...?</p>
+            </div>
+            <div clas="numbers-container">
+                <div class="numbers-grid">
+                <button type="button" class="btn btn-darker-light" onclick="addToResult('^')">^</button>
+                <button type="button" class="btn btn-darker-light" onclick="addToResult('3.14159')">π</button>
+                <button type="button" class="btn btn-darker-light" onclick="addToResult('sin(')">sin</button>
+                <button type="button" class="btn btn-darker-light" onclick="addToResult('cos(')">cos</button>
+                <button type="button" class="btn btn-darker-light" onclick="changeResult(0)">AC</button>
+                <button type="button" class="btn btn-darker-light" onclick="addToResult('(')">(</button>
+                <button type="button" class="btn btn-darker-light" onclick="addToResult(')')">)</button>
+                <button type="button" class="btn btn-darker-light" onclick="backspace()"><-</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('7')">7</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('8')">8</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('9')">9</button>
+                <button type="button" class="btn btn-darker-light" onclick="addToResult('/')">/</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('4')">4</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('5')">5</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('6')">6</button>
+                <button type="button" class="btn btn-darker-light"  onclick="addToResult('*')">x</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('1')">1</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('2')">2</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('3')">3</button>
+                <button type="button" class="btn btn-darker-light" onclick="addToResult('-')">-</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('.')">.</button>
+                <button type="button" class="btn btn-light" onclick="addToResult('0')">0</button>
+                <button type="button" class="btn btn-primary" onclick="calculate()">=</button>
+                <button type="button" class="btn btn-darker-light" onclick="addToResult('+')">+</button>
+
+                
+                <!-- <div>1</div>    
+                <div>1</div>    
+                <div>1</div>    
+                <div>1</div>    
+                <div>1</div>     -->
+            </div>
+            </div>
+        </div>
+    </div>
     
-    <script src="ui.js"></script>
+    <script src="game.js"></script>
     <script src="main.js"></script>
     
 </body>
